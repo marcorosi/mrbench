@@ -16,7 +16,7 @@ Main features:
  mvn package -DskipTests
 ```
 
-2. Setup a configuration: some examples are available in src/main/resources/config/ folder.
+2. Prepare a configuration file: some examples are available in src/main/resources/config/ folder.
 
 - gmail_tls.properties: GMail server with TLS authentication
 - gmail_ssl.properties: GMail server with SSL authentication
@@ -34,7 +34,7 @@ message.to=<email address for the recipient of the test messages>
 3. Launch with:
 
 ```
- java -jar target/mrb.jar <options>
+ java -jar target/mrb.jar -c <path_to/configuration_file> -n <number of request>
 ```
 
 ### Options
