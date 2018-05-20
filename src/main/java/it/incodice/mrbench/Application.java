@@ -70,16 +70,15 @@ import org.apache.commons.cli.ParseException;
 		options.addOption(
 				Option.builder("n")
 						.longOpt("requests")
-						.desc("Number of requests to perform")
+						.desc("Number of requests to perform, default to "+ BenchmarkConfig.DEFAULT_REQUEST_NUMBER)
 						.hasArg()
-						.required()
 						.build()
 		);
 
 		options.addOption(
 				Option.builder("p")
 						.longOpt("concurrent")
-						.desc("Number of concurrent request (default to 1, total test requests will be n*p)")
+						.desc("Number of concurrent request (total test requests will be n*p), default to "+ BenchmarkConfig.DEFAULT_CONCURRENT_VALUE)
 						.hasArg()
 						.build()
 		);
@@ -87,7 +86,7 @@ import org.apache.commons.cli.ParseException;
 		options.addOption(
 				Option.builder("s")
 						.longOpt("size")
-						.desc("Requests size (default is 1000)")
+						.desc("Requests character size, default to "+ BenchmarkConfig.DEFAULT_REQUEST_SIZE)
 						.hasArg()
 						.build()
 		);
@@ -116,10 +115,10 @@ import org.apache.commons.cli.ParseException;
 		SMTPConfig smtpConfig = ConfigBuilder.buildSMTPConfig(commandLine.getOptionValue("config"));
 
 		BenchmarkConfig benchmarkConfig = new BenchmarkConfig(smtpConfig);
-		benchmarkConfig.setNumberOfMessage(Integer.valueOf(commandLine.getOptionValue("n")));
-		benchmarkConfig.setMessageSize(Integer.valueOf(commandLine.getOptionValue("s","1000")));
+		benchmarkConfig.setRequestsNumber(Integer.valueOf(commandLine.getOptionValue("n", BenchmarkConfig.DEFAULT_REQUEST_NUMBER+"")));
+		benchmarkConfig.setRequestSize(Integer.valueOf(commandLine.getOptionValue("s", BenchmarkConfig.DEFAULT_REQUEST_SIZE+"")));
+		benchmarkConfig.setConcurrent(Integer.valueOf(commandLine.getOptionValue("p", BenchmarkConfig.DEFAULT_CONCURRENT_VALUE+"")));
 		benchmarkConfig.setReuseConnection(commandLine.hasOption("reuse"));
-		benchmarkConfig.setConcurrent(Integer.valueOf(commandLine.getOptionValue("p","1")));
 
 		return benchmarkConfig;
 	}

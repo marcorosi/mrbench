@@ -37,7 +37,7 @@ public class SMTPBenchmarkJob implements Callable<BenchmarkJobResult> {
 		this.session.setDebug(sessionDebug);
 
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < benchmarkConfig.getMessageSize(); i++) {
+		for (int i = 0; i < benchmarkConfig.getRequestSize(); i++) {
 			sb.append("a");
 		}
 		this.messageBody = sb.toString();
@@ -93,7 +93,7 @@ public class SMTPBenchmarkJob implements Callable<BenchmarkJobResult> {
 	 */
 	@Override public BenchmarkJobResult call() throws Exception {
 		BenchmarkJobResult benchmarkResult = new BenchmarkJobResult();
-		for (int i = 0; i < benchmarkConfig.getNumberOfMessage(); i++) {
+		for (int i = 0; i < benchmarkConfig.getRequestsNumber(); i++) {
 			send(benchmarkResult);
 		}
 		return benchmarkResult;

@@ -32,8 +32,8 @@ public class ConfigBuilder {
 		try {
 			BenchmarkConfig config = new BenchmarkConfig(buildSMTPConfig(smtpConfigFile));
 			Properties props = loadProperties(filename);
-			config.setNumberOfMessage(Integer.valueOf(props.getProperty("test.message.number")));
-			config.setMessageSize(Integer.valueOf(props.getProperty("test.message.size")));
+			config.setRequestsNumber(Integer.valueOf(props.getProperty("test.message.number")));
+			config.setRequestSize(Integer.valueOf(props.getProperty("test.message.size")));
 			config.setReuseConnection(Boolean.valueOf(props.getProperty("test.connection.reuse")));
 			return config;
 		} catch (Exception e) {

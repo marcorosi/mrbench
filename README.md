@@ -34,20 +34,20 @@ message.to=<email address for the recipient of the test messages>
 3. Launch with:
 
 ```
- java -jar target/mrb.jar -c <path_to/configuration_file> -n <number of request>
+ java -jar target/mrb.jar -c <path_to/configuration_file>
 ```
 
 ### Options
 
 ```
  -c,--config <arg>       Configuration file to use
- -n,--requests <arg>     Number of requests to perform
- -p,--concurrent <arg>   Number of concurrent request (default to 1, total test requests will be n*p)
+ -n,--requests <arg>     Number of requests to perform, default to 1
+ -p,--concurrent <arg>   Number of concurrent request (total test requests will be n*p), default to 1
  -r,--reuse              Activate connection reuse
- -s,--size <arg>         Requests size (default is 1000)
+ -s,--size <arg>         Requests character size, default to 1000
 ```
 
-You need to specify at least -c and -n parameters. 
+You need to specify at least the -c parameter. 
 
 Example:
 
@@ -65,6 +65,14 @@ To run it you need to:
 
 The file unit_test_bench.properties can be used to customize the test behaviour.
  
+## Design consideration
+
+The application is quite simple but designed to be easily extended.
+ 
+More benchmark type can be added introducing a bit of inheritance on SMTPBenchmarkJob (and relative configuration)
+
+Most of the code can be reused for creating a web application with or without UI (eg. a REST API).
+
 Have fun
 
 M.
