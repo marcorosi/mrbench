@@ -22,7 +22,14 @@ Main features:
 - gmail_ssl.properties: GMail server with SSL authentication
 - local.properties: localhost without authentication
 
-**For Gmail you need to specify a valid username and password**
+For Gmail or other SMTP server with authentication **you need to specify this properties:**
+
+```
+smtp.username=<smtp server username>
+smtp.password=<smtp server password>
+message.from=<email address for the sender of the test messages>
+message.to=<email address for the recipient of the test messages>
+```
 
 3. Launch with:
 
